@@ -1,0 +1,139 @@
+# Money Market Fund Maturities and Short-Term Interest Rates: A Granger Causality Analysis
+
+## 📘 Overview
+
+This repository accompanies my MSc Investment Management thesis titled
+**“Money Market Fund Maturities and Short-Term Interest Rates: New Evidence from Granger Causality Tests”**
+submitted to Bayes Business School (City, University of London) in 2025 under the supervision of **Dr. Sotiris Staikouras**.
+
+The study investigates whether **money market fund (MMF) portfolio maturities** and **U.S. Treasury bill yields** exhibit predictive relationships over time. Building on Domian (1992), it revisits the causality structure using **modern SEC N-MFP data** and **updated econometric methods**.
+
+---
+
+## 🎯 Objectives
+
+* Determine whether MMF maturities Granger-cause Treasury bill yields, or vice versa.
+* Examine how this relationship evolved under changing **monetary policy regimes** and **regulatory reforms** (2010, 2016, 2024).
+* Provide an empirical comparison between historical and modern MMF behavior using **robust time-series tests** and **visual analysis**.
+
+---
+
+## 🧩 Repository Structure
+
+```
+mmf-tbill-granger/
+│
+├── data/
+│   ├── raw/                # Unmodified SEC N-MFP XML filings
+│   ├── processed/          # Cleaned and aggregated CSVs
+│   └── external/           # FRED Treasury bill yield data
+│
+├── notebooks/
+│   ├── 01_data_extraction.ipynb
+│   ├── 02_data_cleaning.ipynb
+│   ├── 03_visualization.ipynb
+│   └── 04_granger_analysis.ipynb
+│
+├── src/
+│   ├── data_loader.py      # XML parsing and weighting logic
+│   ├── granger_test.py     # Granger causality and stationarity tests
+│   └── plotting.py         # Time-series plotting utilities
+│
+├── results/
+│   ├── figures/            # Charts and time-series visualizations
+│   └── tables/             # Statistical output and ADF/Granger results
+│
+├── thesis/
+│   ├── sharulnizamn.pdf    # Final thesis report
+│   └── references.bib
+│
+├── README.md
+├── requirements.txt
+└── .gitignore
+```
+
+---
+
+## 🧠 Methodology
+
+1. **Data Collection**
+
+   * Extracted `<averagePortfolioMaturity>` and related variables from SEC Form N-MFP filings (June 2016 – June 2025).
+   * Aggregated across three representative MMFs: Fidelity Hereford Street Trust, JPMorgan Prime MMF, and Goldman Sachs Trust.
+   * Maturity data was weighted by total net assets to form a composite index.
+   * Treasury bill data sourced from **FRED (3-month T-bill yield, DGS3MO)** and aggregated to monthly frequency.
+
+2. **Data Transformation**
+
+   * Conducted **Augmented Dickey–Fuller (ADF)** tests for stationarity.
+   * Applied **first differencing**, **log transformations**, and **Akaike Information Criterion (AIC)**–based lag selection.
+
+3. **Causality Testing**
+
+   * Estimated **bivariate autoregressive models** (VAR) for MMF maturity and T-bill yields.
+   * Applied **Granger causality tests** to detect predictive relationships in both directions.
+
+4. **Interpretation**
+
+   * Results showed **no evidence of Granger causality** in either direction, diverging from Domian (1992).
+   * Possible explanations include post-crisis monetary regimes, fund reclassification, and data frequency differences.
+
+---
+
+## 📊 Key Tools and Libraries
+
+* `pandas`, `numpy` — data management
+* `statsmodels` — econometric testing
+* `matplotlib`, `seaborn` — visualization
+* `lxml`, `xml.etree` — XML parsing
+* `requests` — SEC data retrieval
+
+---
+
+## 🧩 Future Extensions
+
+* **Subsample or rolling-window Granger tests** to detect time-varying causality (Alam et al., 2021).
+* **Multivariate VAR models** incorporating policy stance (EFFR), volatility (VIX), or MMF sector size (AUM).
+* **Higher-frequency data** to improve lag precision and dynamic analysis.
+
+---
+
+## 📚 References
+
+* Alam, M.R., Paramati, S.R., Shahbaz, M. & Bhattacharya, M. (2021). *The role of financial stability and corruption in environmental sustainability: Evidence from South Asian economies.* **Journal of Environmental Management, 294**, 112915.
+* Allen, K., Saha, P., Whitledge, M. & Winters, D. (2022). *Money market reforms: The effect on the commercial paper market.* FDIC Working Paper 2022-05. [https://www.fdic.gov/analysis/cfr/working-papers/2022/cfr-wp2022-05.pdf](https://www.fdic.gov/analysis/cfr/working-papers/2022/cfr-wp2022-05.pdf)
+* Christiano, L.J. & Ljungqvist, L. (1988). *Money does Granger-cause output in the bivariate money-output relation.* **Journal of Monetary Economics, 22(2)**, 217–235.
+* Domian, D.L. (1992). *Money Market Mutual Fund Maturity and Interest Rates.* **Journal of Money, Credit and Banking, 24(4)**, 519–527.
+* Farinella, J.A. & Koch, T.W. (2000). *Seasonal patterns in money market mutual funds.* **Journal of Financial Research, 23(4)**, 479–499.
+* Kuha, J. (2004). *AIC and BIC: Comparisons of assumptions and performance.* **Sociological Methods & Research, 33(2)**, 188–229.
+* Palm, F.C., Smeekes, S. & Urbain, J.P. (2006). *Bootstrap unit root tests: Comparison and extensions.* **Journal of Time Series Analysis, 27(5)**, 675–698.
+
+---
+
+## ⚙️ How to Reproduce
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/mmf-tbill-granger.git
+   cd mmf-tbill-granger
+   ```
+2. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Run Jupyter notebooks in sequence (`01_data_extraction` → `04_granger_analysis`).
+
+---
+
+## 📄 License
+
+This project is shared for academic and educational purposes only.
+Please provide citation if using code, results, or methodology from this repository.
+
+---
+
+## 🧾 Citation
+
+Sharul Nizam, Nathrah (2025). *Money Market Fund Maturities and Short-Term Interest Rates: New Evidence from Granger Causality Tests.* MSc Investment Management Thesis, Bayes Business School (City, University of London).
