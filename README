@@ -24,33 +24,35 @@ The study investigates whether **money market fund (MMF) portfolio maturities** 
 mmf-tbill-granger/
 │
 ├── data/
-│   ├── raw/                # Unmodified SEC N-MFP XML filings
-│   ├── processed/          # Cleaned and aggregated CSVs
-│   └── external/           # FRED Treasury bill yield data
+│   ├── raw/                  # Original XMLs and raw CSVs
+│   │   ├── fidelity_raw.csv
+│   │   ├── jpm_raw.csv
+│   │   ├── gs_raw.csv
+│   │   └── dtb3_raw.csv
+│   │
+│   ├── processed/            # Clean and sorted datasets
+│   │   ├── n_mfp_combined.csv
+│   │   ├── wam_index.csv
+│   │   └── dtb3_processed.csv
+│   │
+│   └── external/             # Reference data (FRED, documentation)
 │
 ├── notebooks/
-│   ├── 01_data_extraction.ipynb
-│   ├── 02_data_cleaning.ipynb
-│   ├── 03_visualization.ipynb
-│   └── 04_granger_analysis.ipynb
-│
-├── src/
-│   ├── data_loader.py      # XML parsing and weighting logic
-│   ├── granger_test.py     # Granger causality and stationarity tests
-│   └── plotting.py         # Time-series plotting utilities
+│   ├── 01_extract_data.ipynb       # parses raw XMLs → saves processed CSVs
+│   ├── 02_build_index.ipynb        # constructs WAM index from fund data
+│   ├── 03_graphs_visuals.ipynb     # makes plots (Figure 1, etc.)
+│   └── 04_adf_granger_tests.ipynb  # runs ADF & Granger tests, exports summary CSV
 │
 ├── results/
-│   ├── figures/            # Charts and time-series visualizations
-│   └── tables/             # Statistical output and ADF/Granger results
+│   ├── figures/              # PNGs and plots for thesis
+│   └── tables/               # ADF and Granger test output tables
 │
 ├── thesis/
-│   ├── sharulnizamn.pdf    # Final thesis report
-│   └── references.bib
+│   └── sharulnizamn.pdf
 │
 ├── README.md
 ├── requirements.txt
 └── .gitignore
-```
 
 ---
 
